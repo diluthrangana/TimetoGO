@@ -2,6 +2,8 @@ package com.tedora.TimeToGo.service.serviceimpl;
 
 import com.tedora.TimeToGo.dto.BookingDTO;
 import com.tedora.TimeToGo.entity.Bookings;
+import com.tedora.TimeToGo.entity.Schedules;
+import com.tedora.TimeToGo.entity.Users;
 import com.tedora.TimeToGo.repository.BookingRepository;
 import com.tedora.TimeToGo.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,15 +50,16 @@ public class BookingServiceimpl implements BookingService {
         if (existingBookingOpt.isPresent()) {
             Bookings existingBooking = existingBookingOpt.get();
 
-            // Update fields
-            existingBooking.setUserId(bookingDTO.getUserId());
-            existingBooking.setScheduleId(bookingDTO.getScheduleId());
+            // Update fields based on DTO
+            Users user = bookingDTO.getUser();
+            Schedules schedule = bookingDTO.getSchedule();
+
+            existingBooking.setUser(user);
+            existingBooking.setSchedule(schedule);
             existingBooking.setSeatNumber(bookingDTO.getSeatNumber());
             existingBooking.setBookingStatus(bookingDTO.getBookingStatus());
             existingBooking.setPassengerName(bookingDTO.getPassengerName());
             existingBooking.setContactNumber(bookingDTO.getContactNumber());
-
-            // Don't update bookingTime as it should remain the original booking time
 
             Bookings updatedBooking = bookingRepository.save(existingBooking);
             return convertToDTO(updatedBooking);
@@ -65,12 +68,11 @@ public class BookingServiceimpl implements BookingService {
         return null;
     }
 
-    // Helper method to convert Entity to DTO
     private BookingDTO convertToDTO(Bookings booking) {
         BookingDTO dto = new BookingDTO();
         dto.setBookingId(booking.getBookingId());
-        dto.setUserId(booking.getUserId());
-        dto.setScheduleId(booking.getScheduleId());
+        dto.setUser(booking.getUser());
+        dto.setSchedule(booking.getSchedule());
         dto.setSeatNumber(booking.getSeatNumber());
         dto.setBookingTime(booking.getBookingTime());
         dto.setBookingStatus(booking.getBookingStatus());

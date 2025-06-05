@@ -1,45 +1,27 @@
-package com.tedora.TimeToGo.entity;
+package com.tedora.TimeToGo.dto;
 
-import com.tedora.TimeToGo.enums.*;
-import jakarta.persistence.*;
+import com.tedora.TimeToGo.enums.BusClass;
+import com.tedora.TimeToGo.enums.BusType;
+import com.tedora.TimeToGo.enums.Manufacturer;
+import com.tedora.TimeToGo.enums.Ownership;
 
-@Entity
-@Table(name = "buses")
-public class Buses {
+/** Lightweight transfer object for Bus data */
+public class BusesDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "busId", nullable = false, updatable = false)
     private Long busId;
-
-    @Column(name = "busNumber", nullable = false, unique = true)
     private String busNumber;
-
-    @Column(name = "capacity", nullable = true)
     private Integer capacity;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "ownership")
     private Ownership ownership;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "busClass")
     private BusClass busClass;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "busType")
     private BusType busType;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "manufacturer", nullable = false)
     private Manufacturer manufacturer;
 
     /* ---------- constructors ---------- */
-    public Buses() {}
+    public BusesDTO() {}
 
-    public Buses(Long busId, String busNumber, Integer capacity,
-                 Ownership ownership, BusClass busClass,
-                 BusType busType, Manufacturer manufacturer) {
+    public BusesDTO(Long busId, String busNumber, Integer capacity,
+                    Ownership ownership, BusClass busClass,
+                    BusType busType, Manufacturer manufacturer) {
         this.busId = busId;
         this.busNumber = busNumber;
         this.capacity = capacity;

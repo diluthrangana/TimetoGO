@@ -1,13 +1,9 @@
 package com.tedora.TimeToGo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "stations")
-@Getter
-@Setter
 public class Stations {
 
     @Id
@@ -17,4 +13,18 @@ public class Stations {
 
     @Column(name = "stationName")
     private String stationName;
+
+    public Stations() {
+    }
+
+    public Stations(String stationName) {
+        this.stationName = stationName;
+    }
+
+    // Getters and Setters
+    public Long getStationId() { return stationId; }
+    public void setStationId(Long stationId) { this.stationId = stationId; }
+
+    public String getStationName() { return stationName; }
+    public void setStationName(String stationName) { this.stationName = stationName; }
 }

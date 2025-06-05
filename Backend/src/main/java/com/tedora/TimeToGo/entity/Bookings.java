@@ -13,11 +13,13 @@ public class Bookings {
     @Column(name = "bookingId")
     private Long bookingId;
 
-    @Column(name = "userId", nullable = false)
-    private String userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    private Users user;
 
-    @Column(name = "scheduleId", nullable = false)
-    private String scheduleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "scheduleId", referencedColumnName = "scheduleId")
+    private Schedules schedule;
 
     @Column(name = "seatNumber", nullable = false)
     private String seatNumber;
@@ -38,12 +40,12 @@ public class Bookings {
     public Bookings() {
     }
 
-    public Bookings(Long bookingId, String userId, String scheduleId, String seatNumber,
+    public Bookings(Long bookingId, Users user, Schedules schedule, String seatNumber,
                     LocalDateTime bookingTime, BookingStatus bookingStatus,
                     String passengerName, String contactNumber) {
         this.bookingId = bookingId;
-        this.userId = userId;
-        this.scheduleId = scheduleId;
+        this.user = user;
+        this.schedule = schedule;
         this.seatNumber = seatNumber;
         this.bookingTime = bookingTime;
         this.bookingStatus = bookingStatus;
@@ -59,15 +61,14 @@ public class Bookings {
     }
 
     // Getters and Setters
-
     public Long getBookingId() { return bookingId; }
     public void setBookingId(Long bookingId) { this.bookingId = bookingId; }
 
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    public Users getUser() { return user; }
+    public void setUser(Users user) { this.user = user; }
 
-    public String getScheduleId() { return scheduleId; }
-    public void setScheduleId(String scheduleId) { this.scheduleId = scheduleId; }
+    public Schedules getSchedule() { return schedule; }
+    public void setSchedule(Schedules schedule) { this.schedule = schedule; }
 
     public String getSeatNumber() { return seatNumber; }
     public void setSeatNumber(String seatNumber) { this.seatNumber = seatNumber; }
