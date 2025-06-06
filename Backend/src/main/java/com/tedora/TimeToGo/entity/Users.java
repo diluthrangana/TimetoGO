@@ -12,11 +12,14 @@ public class Users {
     @Column(name = "userId")
     private Long userId;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Bookings> bookings;
@@ -24,9 +27,10 @@ public class Users {
     public Users() {
     }
 
-    public Users(String username, String email) {
+    public Users(String username, String email, String password) {
         this.username = username;
         this.email = email;
+        this.password = password;
     }
 
     // Getters and Setters
@@ -38,6 +42,9 @@ public class Users {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
     public List<Bookings> getBookings() { return bookings; }
     public void setBookings(List<Bookings> bookings) { this.bookings = bookings; }

@@ -76,4 +76,15 @@ public class BookingController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @GetMapping("/bookings/passengers/{scheduleId}")
+    public ResponseEntity<List<String>> getPassengerNamesByScheduleId(@PathVariable Long scheduleId) {
+        try {
+            List<String> passengers = bookingService.getPassengerNamesByScheduleId(scheduleId);
+            return ResponseEntity.ok(passengers);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

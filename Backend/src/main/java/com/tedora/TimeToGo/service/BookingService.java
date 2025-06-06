@@ -10,4 +10,6 @@ public interface BookingService {
     BookingDTO getBookingById(Long id);
     void deleteBooking(Long id);
     BookingDTO updateBooking(Long id, BookingDTO bookingDTO);
+    List<String> getPassengerNamesByScheduleId(Long scheduleId);
+
 }

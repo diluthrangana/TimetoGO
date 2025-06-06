@@ -44,6 +44,12 @@ public class BookingServiceimpl implements BookingService {
     }
 
     @Override
+    public List<String> getPassengerNamesByScheduleId(Long scheduleId) {
+        return bookingRepository.findPassengerNamesByScheduleId(scheduleId);
+    }
+
+
+    @Override
     public BookingDTO updateBooking(Long id, BookingDTO bookingDTO) {
         Optional<Bookings> existingBookingOpt = bookingRepository.findById(id);
 

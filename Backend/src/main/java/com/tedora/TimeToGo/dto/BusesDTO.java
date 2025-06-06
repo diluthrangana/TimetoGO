@@ -16,7 +16,7 @@ public class BusesDTO {
     private BusType busType;
     private Manufacturer manufacturer;
 
-    /* ---------- constructors ---------- */
+
     public BusesDTO() {}
 
     public BusesDTO(Long busId, String busNumber, Integer capacity,

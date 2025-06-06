@@ -29,8 +29,7 @@ public class Schedules {
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Bookings> bookings;
 
-    public Schedules() {
-    }
+    public Schedules() {}
 
     public Schedules(Routes route, BusContact busContact, String startTime, String endTime) {
         this.route = route;
@@ -39,7 +38,6 @@ public class Schedules {
         this.endTime = endTime;
     }
 
-    // Getters and Setters
     public Long getScheduleId() { return scheduleId; }
     public void setScheduleId(Long scheduleId) { this.scheduleId = scheduleId; }
 
